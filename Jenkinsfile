@@ -17,7 +17,7 @@ pipeline {
             agent { label 'jdk8' }
             steps {
               container('jdk8') {
-                sh 'mvn -v'
+                sh 'java -version'
               }
             }
           }
@@ -25,7 +25,7 @@ pipeline {
             agent { label 'jdk10' }
             steps {
               container('jdk10') {
-                sh 'mvn -v'
+                sh 'java -version'
               }
             }
           }
