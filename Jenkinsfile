@@ -12,28 +12,26 @@ pipeline {
       }
     }
     stage('Testing') {
-      failFast true
-      parallel {
-        stage('Java 8') {
-          agent {
-            label 'jdk8'
+        parallel {
+          stage('Java 8') {
+            agent { label 'jdk8' }
+            steps {
+              container('jdk8') {
+                sh 'mvn -v'
+              }
+            }
           }
-          steps {
-            sh 'java -version'
-            sleep(time: 10, unit: 'SECONDS')
-          }
-        }
-        stage('Java 9') {
-          agent {
-            label 'jdk10'
-          }
-          steps {
-            sh 'java -version'
-            sleep(time: 20, unit: 'SECONDS')
+          stage('Java 10') {
+            agent { label 'jdk10' }
+            steps {
+              container('jdk10') {
+                sh 'mvn -v'
+              }
+            }
           }
         }
       }
-    }
+
     stage('Get Kernel') {
       steps {
         script {
