@@ -14,7 +14,7 @@ pipeline {
     stage('Testing') {
         parallel {
           stage('Java 8') {
-            agent { label 'jdk8' }
+            agent { label 'jdk8a' }
             steps {
               container('jdk8') {
                 sh 'java -version'
